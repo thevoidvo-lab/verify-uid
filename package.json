@@ -1,0 +1,12 @@
+{
+  "name": "verify-uid",
+  "version": "1.0.0",
+  "description": "Auto verify UID FF KIPAS",
+  "main": "verify-uid.js",
+  "scripts": {
+    "start": "node verify-uid.js"
+  },
+  "dependencies": {
+    "playwright": "latest"
+  }
+}
