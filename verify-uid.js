@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 // ========================
 // KONFIGURASI - EDIT INI
 // ========================
-const UID = '15730422727'; // Ganti dengan UID FF lo
+const UID = 'MASUKKAN_UID_FF_LO_DISINI'; // Ganti dengan UID FF lo
 const INTERVAL_JAM = 5;
 // ========================
 
@@ -99,69 +99,6 @@ async function verifyUID() {
             log(`⚠️ Selesai tapi tidak ada konfirmasi sukses.`);
             log(`Isi halaman: ${pageText.substring(0, 200)}`);
         }
-
-    } catch (err) {
-        log(`❌ ERROR: ${err.message}`);
-    } finally {
-        await browser.close();
-    }
-}
-
-async function main() {
-    log('=== Auto Verify UID FF KIPAS ===');
-    log(`UID: ${UID} | Interval: ${INTERVAL_JAM} jam`);
-
-    await verifyUID();
-
-    setInterval(async () => {
-        log(`--- Interval ${INTERVAL_JAM} jam ---`);
-        await verifyUID();
-    }, INTERVAL_MS);
-}
-
-main();
-    const context = await browser.newContext({
-        userAgent: 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36',
-        viewport: { width: 390, height: 844 },
-    });
-
-    // Block iklan
-    await context.route('**/*', route => {
-        const blocked = ['quge5.com', 'monetag', 'pushground', 'adnxs', 'doubleclick', 'googlesyndication'];
-        if (blocked.some(b => route.request().url().includes(b))) route.abort();
-        else route.continue();
-    });
-
-    const page = await context.newPage();
-    page.on('dialog', async d => { await d.dismiss(); });
-
-    try {
-        log('Membuka halaman...');
-        await page.goto('https://ffkipas.my.id/verifyuid', { waitUntil: 'domcontentloaded', timeout: 30000 });
-
-        log('Mengisi UID...');
-        await page.waitForSelector('input', { timeout: 10000 });
-        await page.fill('input', UID);
-
-        log('Klik VERIFY UID...');
-        await page.click('button');
-        await sleep(2000);
-
-        for (let step = 1; step <= 5; step++) {
-            log(`Step ${step}/5...`);
-            try {
-                await page.waitForSelector('button:has-text("Continue")', { timeout: 10000 });
-                await sleep(1500);
-                await page.click('button:has-text("Continue")');
-            } catch {
-                const done = await page.$('text=Verification Complete');
-                if (done) break;
-            }
-        }
-
-        await sleep(2000);
-        const success = await page.$('text=Verification Complete');
-        log(success ? '✅ VERIFY BERHASIL!' : '⚠️ Selesai tanpa konfirmasi sukses.');
 
     } catch (err) {
         log(`❌ ERROR: ${err.message}`);
