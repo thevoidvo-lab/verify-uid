@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 // ========================
 // KONFIGURASI - EDIT INI
 // ========================
-const UID = 'MASUKKAN_UID_FF_LO_DISINI'; // Ganti dengan UID FF lo
+const UID = '15730422727'; // Ganti dengan UID FF lo
 const INTERVAL_JAM = 5;
 // ========================
 
