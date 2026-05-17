@@ -3,7 +3,7 @@ const { chromium } = require('playwright');
 // ========================
 // KONFIGURASI - EDIT INI
 // ========================
-const UID = '15730422727'; // Ganti dengan UID FF lo
+const UID = 'MASUKKAN_UID_FF_LO_DISINI'; // Ganti dengan UID FF lo
 const INTERVAL_JAM = 5;
 // ========================
 
@@ -61,7 +61,7 @@ async function verifyUID() {
 
         // Klik tombol VERIFY UID
         log('Klik VERIFY UID...');
-        await page.click('button:has-text("VERIFY UID")');
+        await page.locator('button:has-text("VERIFY UID")').dispatchEvent('click');
         await sleep(2000);
 
         // Step 1-4: tombol "Continue Process"
@@ -70,7 +70,7 @@ async function verifyUID() {
             try {
                 await page.waitForSelector('button:has-text("Continue Process")', { timeout: 15000 });
                 await sleep(1500);
-                await page.click('button:has-text("Continue Process")');
+                await page.locator('button:has-text("Continue Process")').dispatchEvent('click');
                 await sleep(2000);
                 log(`✅ Step ${step} berhasil`);
             } catch (e) {
@@ -83,7 +83,7 @@ async function verifyUID() {
         try {
             await page.waitForSelector('button:has-text("Finalize Verification")', { timeout: 15000 });
             await sleep(1500);
-            await page.click('button:has-text("Finalize Verification")');
+            await page.locator('button:has-text("Finalize Verification")').dispatchEvent('click');
             await sleep(3000);
             log('✅ Step 5 berhasil');
         } catch (e) {
