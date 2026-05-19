@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 // KONFIGURASI - EDIT INI
 // ========================
 const UID = '15730422727'; // Ganti dengan UID FF lo
-const INTERVAL_JAM = 2;
+const INTERVAL_JAM = 1;
 // ========================
 
 const INTERVAL_MS = INTERVAL_JAM * 60 * 60 * 1000;
